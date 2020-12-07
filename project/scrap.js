@@ -2,7 +2,7 @@ const puppeteer = require('puppeteer');
 
 async function scrap(username,password,start_date,end_date){
 	try {
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
     const page = await browser.newPage();
     await page.setViewport({ width: 1366, height: 768 });
     const url = `https://cavemen.revelup.com/resources/OrderItem/?limit=0&created_date__gte=${start_date}T06:00:00&created_date__lte=${end_date}T06:00:00&voided_date__isnull=true`
