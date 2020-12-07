@@ -1,7 +1,7 @@
 const server = require('./project/app');
 
 const port = process.env.PORT || 5000;
-server.listen(5000, (err) => {
+server.listen(port, (err) => {
 	if(err) {
 		console.log(err);
 	}
