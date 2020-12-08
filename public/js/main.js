@@ -2,6 +2,10 @@ const form = document.querySelector('form');
 const start_date_info = document.querySelector('#start_date_info');
 const error_text = document.querySelector('#error_text');
 function dateChcker(start_date,end_date){
+	if(start_date === end_date) {
+		start_date_info.textContent = 'Date must be different';
+		return false;
+	}
 	if( new Date() < new Date(end_date) ) {
 		start_date_info.textContent = 'The end date has not pass yet';
 		return false;
@@ -31,8 +35,9 @@ form.addEventListener('submit', (e) => {
 		end_date,
 	})
 	.then(res => {
-		// console.log(res.data);
-		const url = window.URL.createObjectURL(new Blob([res.data]));
+		console.log(res.data);
+		const json = JSON.stringify(res.data);
+		const url = window.URL.createObjectURL(new Blob([json]));
 		const link = document.createElement('a');
     link.href = url;
     link.style.display = 'none';
@@ -45,6 +50,7 @@ form.addEventListener('submit', (e) => {
 	.catch(e => {
 		console.log(e);
 		console.log(e.response);
+		if(!e.response || !e.response.data) error_text.textContent = `Failed to get your desire data.Check your username,password and network connection. Finally check weather you have to reset your password or your ip address is blocked by them.`
 		error_text.textContent = e.response.data.errorMsg;
 	})
 })

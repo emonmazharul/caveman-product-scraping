@@ -10,18 +10,23 @@ async function scrap(username,password,start_date,end_date){
 	  await page.type('.auth0-lock-input-username > div:nth-child(1) > input:nth-child(2)', username); //gto_paulanerbrauhaussg
 	  await page.type('.auth0-lock-input-password > div:nth-child(1) > input:nth-child(2)',password); 
 		await page.click('.auth0-label-submit');
-		await page.waitForNavigation({waitUntil: 'networkidle0', timeout: 0,});
+		let interest = await page.waitForNavigation({waitUntil: 'networkidle0', timeout: 0,});
+		//error for wrong username and password.
+		// console.log(page.url().includes('dashboard') , page.url());
+		if(page.url().includes('reset') ) {
+			// console.log('login error');
+			throw new Error('');
+		}
+		
 		await page.goto(url, {waitUntil: 'networkidle0', timeout: 0,} );
 		const response = await page.evaluate(() => {
-			console.log('in evaluate function')
-			console.log(document.querySelector('body').innerText);
-			return JSON.parse(document.querySelector('body').innerText);
+			return JSON.parse(document.querySelector('body').innerText).objects.filter(product => product.bill_parent === null);
 		})
     await browser.close();
     if(!response) throw new Error('');
     return {status:'ok', response,};
   } catch(e) {
-  		// console.log(e);
+  		console.log(e);
       return {
       	errorMsg:`
 	  		Failed to get your desire data.Check your username,password and 
@@ -31,4 +36,6 @@ async function scrap(username,password,start_date,end_date){
   	};
 	}
 }
+
+
 module.exports = scrap;
