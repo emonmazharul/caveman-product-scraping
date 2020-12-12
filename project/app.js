@@ -4,7 +4,7 @@ const scrap = require('./scrap');
 const fs = require('fs');
 
 const cors = require('cors')
-
+const html = require('./html')
 const app = express();
 
 const publiPath = path.join(__dirname, '../public');
@@ -25,10 +25,10 @@ app.post('/product_data', async (req,res) => {
 		 errorMsg = response;
 		 throw new Error(response);
 		}
-		// fs.writeFileSync('data.json', JSON.stringify(response.response));
-		res.status(201).send(response.response);
+		res.status(201).send(html(response.response));
 	} catch (e) {
 		res.status(404).send(errorMsg);
 	}
 })
+
 module.exports = app;
