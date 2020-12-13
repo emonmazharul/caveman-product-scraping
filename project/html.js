@@ -14,7 +14,23 @@ function tbody_data_maker(json) {
       const dateArr =  new Date(created_date).toString().split(' ');
       const [day_of_week,month,date,year] = dateArr.slice(0, 4)
       const [hour,minute] = dateArr[4].split(':') 
-      res = res + `<tr>  \n <td scope="row">${i+1}</td> \n <td scope="row">${month}</td> \n <td scope="row">${date}</td> \n<td scope="row">${year}</td>\n <td scope="row">${hour}</td> \n <td scope="row">${minute}</td> \n  <td scope="row">${day_of_week}</td>\n <td scope="row">${id}</td>\n <td scope="row">${Order}</td>\n <td scope="row">${quantity}</td> \n<td scope="row">${price}</td> \n <td scope="row">${Sales}</td> \n<td scope="row">${dining_option}</td>\n <td scope="row"> <a href="https://cavemen.revelup.com${product}" target="_blank"> https://cavemen.revelup.com${product} </a> </td>\n </tr> \n`
+      res = res + `<tr>  
+      	\n <td scope="row" >${i+1}</td> 
+      	\n <td scope="row" data-bs-toggle="tooltip" data-bs-placement="top" title="month">${month}</td> 
+      	\n <td scope="row" data-bs-toggle="tooltip" data-bs-placement="top" title="date">${date}</td> 
+      	\n<td scope="row" data-bs-toggle="tooltip" data-bs-placement="top" title="year">${year}</td>
+      	\n <td scope="row" data-bs-toggle="tooltip" data-bs-placement="top" title="hour">${hour}</td> 
+      	\n <td scope="row" data-bs-toggle="tooltip" data-bs-placement="top" title="minute">${minute}</td> 
+      	\n  <td scope="row" data-bs-toggle="tooltip" data-bs-placement="top" title="day of week">${day_of_week}</td>
+      	\n <td scope="row" data-bs-toggle="tooltip" data-bs-placement="top" title="id">${id}</td>
+      	\n <td scope="row" data-bs-toggle="tooltip" data-bs-placement="top" title="Order">${Order}</td>
+      	\n <td scope="row" data-bs-toggle="tooltip" data-bs-placement="top" title="quantity">${quantity}</td> 
+      	\n<td scope="row" data-bs-toggle="tooltip" data-bs-placement="top" title="price">${price}</td> 
+      	\n <td scope="row" data-bs-toggle="tooltip" data-bs-placement="top" title="Sales">${Sales}</td> 
+      	\n<td scope="row" data-bs-toggle="tooltip" data-bs-placement="top" title="dining_option">${dining_option}</td> 
+      	\n <td scope="row" data-bs-toggle="tooltip" data-bs-placement="top" title="product"> <a href="https://cavemen.revelup.com${product}" target="_blank"> https://cavemen.revelup.com${product} </a> </td>
+      	\n 
+      	</tr> \n`
     }
     return res;
 }
@@ -33,6 +49,8 @@ function html(tds){
 			  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 			  <!-- CSS only -->
 				<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+				<!-- JavaScript Bundle with Popper -->
+				<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 			</head>
 			<body>
 				<table class="table table-dark table-striped table-bordered table-hover table-responsive" style="width:100%">
@@ -45,7 +63,6 @@ function html(tds){
 				  	${tbody_data_maker(tds)}
 				  </tbody>
 				</table>
-				<script src="/js_script"></script>
 			</body>
 		</html>
 	`
