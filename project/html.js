@@ -52,7 +52,7 @@ function tbody_data_maker(json,username,password) {
       	\n<td scope="row" data-bs-toggle="tooltip" data-bs-placement="top" title="Store">${store}</td>
       	\n<td scope="row" data-bs-toggle="tooltip" data-bs-placement="top" title="Product Class">${product_class}</td>
       	\n<td scope="row" data-bs-toggle="tooltip" data-bs-placement="top" title="Category">${category}</td>
-      	\n<td scope="row" data-bs-toggle="tooltip" data-bs-placement="top" title="Product Class">${sub_category}</td> 
+      	\n<td scope="row" data-bs-toggle="tooltip" data-bs-placement="top" title="Sub Category">${sub_category}</td> 
       	\n 
       	</tr> \n`
     }
