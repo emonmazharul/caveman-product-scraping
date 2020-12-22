@@ -1,6 +1,6 @@
 const puppeteer = require('puppeteer');
 const axios = require('axios');
-const objects_scraper = require('./objects_scraper');
+// const objects_scraper = require('./objects_scraper');
 
 async function product_scraper(username,password,start_date,end_date) {
 	try {
