@@ -12,13 +12,14 @@ const table_headers = [
 	'<th scope="col">Price</th>',
 	'<th scope="col">Sales</th>',
 	'<th scope="col">Dining option</th>',
-	'<th scope="col">Product Name</th>',
-	'<th scope="col">sku</th>',
-	'<th scope="col">Store</th>',
-	'<th scope="col">Product Class</th>',
-	'<th scope="col">Category</th>',
-	'<th scope="col">Sub Category</th>',
 ];
+
+	// '<th scope="col">Product Name</th>',
+	// '<th scope="col">sku</th>',
+	// '<th scope="col">Store</th>',
+	// '<th scope="col">Product Class</th>',
+	// '<th scope="col">Category</th>',
+	// '<th scope="col">Sub Category</th>',
 
 function trows(th){
 	return table_headers.join(' ');
@@ -47,17 +48,18 @@ function tbody_data_maker(json,username,password) {
       	\n<td scope="row" data-bs-toggle="tooltip" data-bs-placement="top" title="Price">${price}</td> 
       	\n <td scope="row" data-bs-toggle="tooltip" data-bs-placement="top" title="Sales">${pure_sales}</td> 
       	\n<td scope="row" data-bs-toggle="tooltip" data-bs-placement="top" title="Dining option">${dining_option}</td> 
-      	\n<td scope="row" data-bs-toggle="tooltip" data-bs-placement="top" title="Product Name">${product_name}</td>
-      	\n<td scope="row" data-bs-toggle="tooltip" data-bs-placement="top" title="sku">${sku}</td>
-      	\n<td scope="row" data-bs-toggle="tooltip" data-bs-placement="top" title="Store">${store}</td>
-      	\n<td scope="row" data-bs-toggle="tooltip" data-bs-placement="top" title="Product Class">${product_class}</td>
-      	\n<td scope="row" data-bs-toggle="tooltip" data-bs-placement="top" title="Category">${category}</td>
-      	\n<td scope="row" data-bs-toggle="tooltip" data-bs-placement="top" title="Sub Category">${sub_category}</td> 
       	\n 
       	</tr> \n`
     }
     return res;
 }
+
+      	// \n<td scope="row" data-bs-toggle="tooltip" data-bs-placement="top" title="Product Name">${product_name}</td>
+      	// \n<td scope="row" data-bs-toggle="tooltip" data-bs-placement="top" title="sku">${sku}</td>
+      	// \n<td scope="row" data-bs-toggle="tooltip" data-bs-placement="top" title="Store">${store}</td>
+      	// \n<td scope="row" data-bs-toggle="tooltip" data-bs-placement="top" title="Product Class">${product_class}</td>
+      	// \n<td scope="row" data-bs-toggle="tooltip" data-bs-placement="top" title="Category">${category}</td>
+      	// \n<td scope="row" data-bs-toggle="tooltip" data-bs-placement="top" title="Sub Category">${sub_category}</td> 
 
 function html(tds,username,password){
 

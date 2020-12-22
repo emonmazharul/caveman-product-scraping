@@ -23,7 +23,7 @@ async function product_scraper(username,password,start_date,end_date) {
 		for(let i=0;i<cookies.length;i++) {
 			cook = cook + `${cookies[i].name+'='+cookies[i].value}; `
 		}
-		const {data:{ objects: response,error:jsonError } } = await axios.get(`https://cavemen.revelup.com/resources/OrderItem/?limit=0&created_date__gte=${start_date}T06:00:00&created_date__lte=${end_date}T06:00:00&voided_date__isnull=true`, {
+		const { data:{ objects:response,error:jsonError } } = await axios.get(`https://cavemen.revelup.com/resources/OrderItem/?limit=0&created_date__gte=${start_date}T06:00:00&created_date__lte=${end_date}T06:00:00&voided_date__isnull=true`, {
 			headers: {
 				Cookie:cook,
 			}
@@ -31,11 +31,11 @@ async function product_scraper(username,password,start_date,end_date) {
 
 		if(jsonError) throw new Error(jsonError);
 		
-		for(let i = 0; i<response.length; i++) {
-			const items = await objects_scraper(response[i].product, cook);
-			response[i] = {...response[i],...items};
-		}
-		
+		// for(let i = 0; i<response.length; i++) {
+		// 	const items = await objects_scraper(response[i].product, cook);
+		// 	response[i] = {...response[i],...items};
+		// }
+
 		await browser.close();
 		return {status:'ok', response:response};
 
