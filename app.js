@@ -14,12 +14,13 @@ app.use(cors({origin:true}))
 app.use(express.urlencoded({extended:false}))
 app.use(express.json());
 // app.use(express.static(publiPath) );
-
+const indexPath = path.join(__dirname,'/index.html');
+const mainJsPath = path.join(__dirname,'/main.js');
 app.get('/',(req,res) => {
-  res.sendFile(publicPath+'/index.html')
+  res.sendFile(indexPath)
 })
 app.get('/main',(req,res) => {
-  res.sendFile(publicPath+'/js/main.js')
+  res.sendFile(mainJsPath)
 })
 
 app.post('/product_data', async (req,res) => {
