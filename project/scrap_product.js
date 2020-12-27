@@ -1,6 +1,8 @@
 const puppeteer = require('puppeteer');
 const axios = require('axios');
 const objects_scraper = require('./objects_scraper');
+const fs = require('fs');
+const {Parser} = require('json2csv');
 
 async function product_scraper(username,password,start_date,end_date) {
 	try {
@@ -23,22 +25,16 @@ async function product_scraper(username,password,start_date,end_date) {
 		for(let i=0;i<cookies.length;i++) {
 			cook = cook + `${cookies[i].name+'='+cookies[i].value}; `
 		}
-		const {data:{ objects: response,error:jsonError } } = await axios.get(`https://cavemen.revelup.com/resources/OrderItem/?limit=0&created_date__gte=${start_date}T06:00:00&created_date__lte=${end_date}T06:00:00&voided_date__isnull=true`, {
+		const {data:{ objects: response,error:jsonError } } = await axios.get(`https://cavemen.revelup.com/resources/OrderAllInOne/?limit=0&created_date__gte=${start_date}T06:00:00&created_date__lte=${end_date}T06:00:00`, {
 			headers: {
 				Cookie:cook,
 			}
 		});
 
 		if(jsonError) throw new Error(jsonError);
-		
-		for(let i = 0; i<response.length; i++) {
-			const items = await objects_scraper(response[i].product, cook);
-			response[i] = {...response[i],...items};
-		}
-		
+		if(!Array.isArray(response)) throw new Error("couldn't find data for given data");
 		await browser.close();
 		return {status:'ok', response:response};
-
 	} catch (e) {
 			console.log(e);
 			if(e.message.includes('Navigation timeout') ) return {errorMsg:'Your password or username is  incorrect. please check it and try again.'}; 
@@ -48,11 +44,5 @@ async function product_scraper(username,password,start_date,end_date) {
 	  	};
 	}
 }
-
-
-
-// scrap_product('', 'data_cavemen', 'Hello2020!!')
-// 	.then(res => console.log(res))
-// 	.catch(e => console.log(e))
 
 module.exports = product_scraper;
