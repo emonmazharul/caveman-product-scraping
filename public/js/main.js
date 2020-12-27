@@ -17,9 +17,15 @@ function dateChcker(start_date){
 
 form.addEventListener('submit', (e) => {
 	e.preventDefault();
+	const url = e.target.elements.url.value;
 	const username = e.target.elements.username.value;
 	const password = e.target.elements.password.value;
 	const start_date = e.target.elements.start_date.value;
+	const mall_code = e.target.elements.mall_code.value;
+	const tenant_code = e.target.elements.tenant_code.value;
+	const ftp_url = e.target.elements.ftp_url.value;
+	const ftp_username = e.target.elements.ftp_username.value;
+	const ftp_password = e.target.elements.ftp_password.value;
 	if( !dateChcker(start_date)) {
 		return;
 	}
@@ -31,10 +37,16 @@ form.addEventListener('submit', (e) => {
 	error_text.classList.add('text-primary')
 	error_text.textContent = 'Loading...';
 	axios.post('/product_data', {
+		url,
 		username,
 		password,
 		start_date,
 		end_date:created_date_lte,
+		mall_code,
+		tenant_code,
+		ftp_url,
+		ftp_username,
+		ftp_password,
 	})
 	.then(res => {
 		const json  = res.data;

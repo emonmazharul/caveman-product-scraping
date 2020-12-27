@@ -1,9 +1,9 @@
 const fs = require('fs');
 const {Parser} = require('json2csv');
 
-let MALL_CODE = "AST2";
+// let MALL_CODE = "AST2";
 let Days = 1;
-let TENANT_CODE = "0205A";
+// let TENANT_CODE = "0205A";
 
 // Hour values between 0 - 23
 let BUSINESS_HOUR_START = 0;
@@ -25,7 +25,7 @@ yesterdayDate = yesterdayDate;
 let startD = dateYesterday.getDate();
 
 const json2csvParser = new Parser();
-function createCSVFile(objects) {
+function createCSVFile(objects,MALL_CODE,TENANT_CODE) {
       const arr = [];
       for(let i=0;i<objects.length; i++) {
         const obj = objects[i];

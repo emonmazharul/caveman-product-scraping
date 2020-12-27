@@ -19,6 +19,10 @@
 					<h3>Product Management</h3>
 					<form>
 						<div class="form-group mb-3">
+							<label class="form-label" for="url">URL</label>
+							<input class="form-control" name="url" id="url" type="text" placeholder="eg: cavemen" required>
+						</div>
+						<div class="form-group mb-3">
 							<label class="form-label" for="username">Username</label>
 							<input class="form-control" name="username" id="username" type="text" aria-describedby="email_info" required >
 							 <small id="email_info" class="form-text text-muted">
@@ -37,9 +41,30 @@
 							<input class="form-control" name="start_date" id="start_date" type="date" required>
 						</div>
 						<div class="form-group mb-3">
-							<!-- <label class="form-label" for="end_date">End Date</label>
-							<input class="form-control" name="end_date" id="end_date" type="date" aria-describedby="start_date_info" required> -->
 							<small id="start_date_info" class="form-text text-danger"></small>
+						</div>
+						<div class="form-group mb-3">
+							<label class="form-label" for="mall_code">Mall code</label>
+							<input class="form-control" name="mall_code" id="mall_code" type="text" required>
+						</div>
+						<div class="form-group mb-3">
+							<label class="form-label" for="tenant_code">Tenant Code </label>
+							<input class="form-control" name="tenant_code" id="tenant_code" type="text" required>
+						</div>
+						<div class="form-group mb-3">
+							<label class="form-label" for="ftp_url">FTP URL</label>
+							<input class="form-control" name="ftp_url" id="ftp_url" type="text" placeholder="eg: 118.201.222.212" aria-describedby="ftp_url_info" required>
+							<small id="ftp_url_info" class="form-text text-muted">
+							 		just put the host address.dot include the "ftp://"
+							</small>
+						</div>
+						<div class="form-group mb-3">
+							<label class="form-label" for="ftp_username">FTP Username</label>
+							<input class="form-control" name="ftp_username" id="ftp_username" type="text" required>
+						</div>
+						<div class="form-group mb-3">
+							<label class="form-label" for="ftp_password">FTP Password</label>
+							<input class="form-control" name="ftp_password" id="ftp_password" type="text" required >
 						</div>
 						<div class="form-group mb-3">
 							<small class="form-text" id="error_text"></small>

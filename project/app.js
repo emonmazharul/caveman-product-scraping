@@ -15,17 +15,17 @@ app.use(express.json());
 app.use(express.static(publiPath) );
 
 app.post('/product_data', async (req,res) => {
-	const {username,password,start_date,end_date} = req.body;
+	const {url,username,password,mall_code,tenant_code,start_date,end_date,ftp_url,ftp_username,ftp_password} = req.body;
 	let errorMsg;
 	try {
-		const response = await product_scraper(username,password,start_date,end_date);
+		const response = await product_scraper(url,username,password,start_date,end_date);
 
 		if(!response.status) {
 		 errorMsg = response;
 		 throw new Error(response);
 		}
-		createCSVFile(response.response);
-		const {isUploaded,errorMsg:ftpError} =await uplodFile();
+		createCSVFile(response.response,mall_code,tenant_code);
+		const {isUploaded,errorMsg:ftpError} =await uplodFile(ftp_url,ftp_username,ftp_password);
 		if(ftpError) {
 			let errorMsg = ftpError;
 			throw new Error('');

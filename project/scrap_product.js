@@ -4,7 +4,7 @@ const objects_scraper = require('./objects_scraper');
 const fs = require('fs');
 const {Parser} = require('json2csv');
 
-async function product_scraper(username,password,start_date,end_date) {
+async function product_scraper(url,username,password,start_date,end_date) {
 	try {
 		const browser = await puppeteer.launch({ args: ['--no-sandbox','--disable-setuid-sandbox'] });
     const page = await browser.newPage();
@@ -25,7 +25,7 @@ async function product_scraper(username,password,start_date,end_date) {
 		for(let i=0;i<cookies.length;i++) {
 			cook = cook + `${cookies[i].name+'='+cookies[i].value}; `
 		}
-		const {data:{ objects: response,error:jsonError } } = await axios.get(`https://cavemen.revelup.com/resources/OrderAllInOne/?limit=0&created_date__gte=${start_date}T06:00:00&created_date__lte=${end_date}T06:00:00`, {
+		const {data:{ objects: response,error:jsonError } } = await axios.get(`https://${url}.revelup.com/resources/OrderAllInOne/?limit=0&created_date__gte=${start_date}T06:00:00&created_date__lte=${end_date}T06:00:00`, {
 			headers: {
 				Cookie:cook,
 			}

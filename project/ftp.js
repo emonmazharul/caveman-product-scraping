@@ -1,14 +1,14 @@
 const ftp = require("basic-ftp");
 const { uuid } = require('uuidv4');
 
-async function uploadFile() {
+async function uploadFile(host,user,password) {
     const client = new ftp.Client()
     client.ftp.verbose = true
     try {
         await client.access({
-            host: process.env.HOST,
-            user: process.env.USERNAME,
-            password: process.env.PASSWORD,
+            host,
+            user,
+            password,
             secure: false
         })
         const fileName = uuid().slice(5,13)+'.csv';
