@@ -7,12 +7,20 @@ const createCSVFile = require('./project/obj');
 
 const app = express();
 
-const publiPath = path.join(__dirname, '/public');
+const publicPath = path.join(__dirname, '/public');
+// console.log(path.resolve(__dirname+'/public'),publiPath)
 
 app.use(cors({origin:true}))
 app.use(express.urlencoded({extended:false}))
 app.use(express.json());
-app.use(express.static(publiPath) );
+// app.use(express.static(publiPath) );
+
+app.get('/',(req,res) => {
+  res.sendFile(publicPath+'/index.html')
+})
+app.get('/main',(req,res) => {
+  res.sendFile(publicPath+'/js/main.js')
+})
 
 app.post('/product_data', async (req,res) => {
   const {url,username,password,mall_code,tenant_code,start_date,end_date,ftp_url,ftp_username,ftp_password} = req.body;
