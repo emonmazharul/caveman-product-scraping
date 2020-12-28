@@ -1,5 +1,5 @@
 {
-  "name": "revelup data fetching",
+  "name": "revelup_data_fetching",
   "version": "1.0.0",
   "description": "A node app to fetch revelup data",
   "main": "server.js",
