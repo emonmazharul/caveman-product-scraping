@@ -1,8 +1,8 @@
 {
-  "name": "twitter_screenshot_taker",
+  "name": "revelup data fetching",
   "version": "1.0.0",
-  "description": "A node app to fetch twitter screenshot with puppeteer",
-  "main": "index.js",
+  "description": "A node app to fetch revelup data",
+  "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
