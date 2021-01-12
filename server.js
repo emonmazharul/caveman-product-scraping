@@ -1,3 +1,6 @@
+require('./db/connection.js');
+// require('./automate/automate');
+
 const http = require('http');
 const app = require('./app');
 

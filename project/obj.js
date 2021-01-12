@@ -51,7 +51,7 @@ function createCSVFile(objects,MALL_CODE,TENANT_CODE) {
         let TILL_NUMBER = "1";
         let SALES_DATE = obj.created_date ? obj.created_date : "";    
         let GST = tax;
-        let GROSS_SALES_VALUE = finalTotal + discountAmount + Number(serviceFee);
+        let GROSS_SALES_VALUE = finalTotal;
         let SALES_MISC_VALUE = 0;
         let SERVICE_CHARGE = serviceFee;
         let NET_SALES_VALUE = finalTotal - serviceFee - tax;
@@ -61,7 +61,8 @@ function createCSVFile(objects,MALL_CODE,TENANT_CODE) {
         let TOTAL_DISCOUNT_QTY = (discountAmount > 0) ? 1 : 0;
         let TOTAL_DISCOUNT_VALUE = obj.discount_total_amount;
         let CASH = finalTotal;
-        let NETS = (payment_type == 6 && card_type == 5) ? (finalTotal + GST) : 0;
+        // let NETS = (payment_type == 6 && card_type == 5) ? (finalTotal + GST) : 0;
+        let NETS = Number(serviceFee);
         let CREDIT_CARD = (payment_type == 6 && card_type != 5) ? (finalTotal + GST) : 0;
         let DEBIT_CARD = 0;
         let ASIA_SQUARE_VOUCHER = 0;
@@ -112,6 +113,11 @@ function createCSVFile(objects,MALL_CODE,TENANT_CODE) {
     // })
     return csv;
 }
+
+// fs.readFile('sample.json', (err,data) => {
+//     const csv = createCSVFile(JSON.parse(data.toString()).objects,'AST2','0101'  )
+//     console.log(csv)
+// })
 
 module.exports = createCSVFile;
 

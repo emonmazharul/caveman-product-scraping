@@ -2,14 +2,14 @@ const ftp = require("basic-ftp");
 const { v4: uuidv4 } = require('uuid');
 const myCsvReadStream = require('./csvReadableStream');
 
-async function uploadFile(csv,host,user,password) {
+async function uploadFile(csv,host,user,password,isSecure) {
     const client = new ftp.Client()
     try {
         await client.access({
             host,
             user,
             password,
-            secure: false
+            secure: isSecure,
         })
         const Filestream = myCsvReadStream(csv);
         const readableStream = new Filestream();
