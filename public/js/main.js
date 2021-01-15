@@ -171,10 +171,9 @@ saveTask_form.addEventListener('submit', (e) => {
 	const ftp_url = e.target.elements.ftp_url.value;
 	const ftp_username = e.target.elements.ftp_username.value;
 	const ftp_password = e.target.elements.ftp_password.value;
-	const schedule_time = e.target.elements.schedule_time.value;
+	const scheduleTime = e.target.elements.schedule_time.value;
 	const isSecure = e.target.elements.isSecure.checked;
-	console.log(schedule_time);
-	return;
+	
 	saveTask_info.textContent = 'saving...';
 	saveTask_error.textContent = '';
 	axios.post('/user', {
@@ -183,7 +182,8 @@ saveTask_form.addEventListener('submit', (e) => {
 		ftp_username,
 		ftp_password,
 		isSecure,
-		schedule_time,
+		scheduleTime,
+		runAutoTask:true,
 	})
 	.then(res => {
 		saveTask_info.textContent = res.data;

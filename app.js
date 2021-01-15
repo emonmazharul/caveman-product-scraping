@@ -19,6 +19,11 @@ app.use(express.urlencoded({extended:false}))
 app.use(express.json());
 app.use(express.static(publicPath) );
 
+app.get('/edit', (req,res) => {
+  res.sendFile(publicPath+'/edit.html')
+})
+
+
 app.post('/product_data', async (req,res) => {
   const {url,username,password,mall_code,tenant_code,establishment_code,start_date,end_date} = req.body;
   let errorMsg;
@@ -101,6 +106,33 @@ app.get('/' + process.env.SECRET_ROUTE, auth, async (req,res) => {
   }
 })
 
+app.delete('/user', async (req,res) => {
+  const {username,password,subdomain} = req.body;
+  try {
+    const user = await User.findOne({username,password,subdomain});
+    if(!user) throw new Error('');
+    await user.remove();
+    res.status(200).send('successfully deleted user from automated task.');
+  } catch (e) {
+    console.log(e);
+    res.status(401).send({msg:'could not find your id with the given credentials'});
+  }
+})
+
+app.patch('/update', async (req,res) => {
+  const {username,password,subdomain,runAutoTask,scheduleTime} = req.body; 
+  try {
+    const user = await User.findOne({username,password,subdomain});
+    if(!user) throw new Error('');
+    user.runAutoTask = runAutoTask;
+    user.scheduleTime = scheduleTime || user.scheduleTime;
+    await user.save();
+    res.status(201).send('updated your auto task fields.');
+  } catch (e) {
+    console.log(e);
+    res.status(401).send({msg:'could not find your id with the given credentials'});
+  }
+})
 
 module.exports = app;
 

@@ -51,7 +51,8 @@ function createCSVFile(objects,MALL_CODE,TENANT_CODE) {
         let TILL_NUMBER = "1";
         let SALES_DATE = obj.created_date ? obj.created_date : "";    
         let GST = tax;
-        let GROSS_SALES_VALUE = finalTotal;
+        // some values are string so that parseFloat method needed to make them actual number;
+        let GROSS_SALES_VALUE = obj.subtotal+parseFloat(obj.service_fee_taxed)+obj.tax+parseFloat(obj.discount_total_amount);
         let SALES_MISC_VALUE = 0;
         let SERVICE_CHARGE = serviceFee;
         let NET_SALES_VALUE = finalTotal - serviceFee - tax;

@@ -17,9 +17,7 @@
     "env-cmd": "^10.1.0",
     "express": "^4.17.1",
     "json2csv": "^5.0.5",
-    "mongodb-runner": "^2.2.0",
     "mongoose": "^5.11.10",
-    "parse-server": "^4.2.0",
     "puppeteer": "^5.4.1",
     "uuid": "^8.3.2"
   },
@@ -30,7 +28,8 @@
   },
   "nodemonConfig": {
     "ignore": [
-      "public"
+      "public",
+      "practice"
     ]
   }
 }

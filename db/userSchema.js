@@ -55,7 +55,15 @@ const userSchema = new Schema({
 	cookies:{
 		type: String,
 		trim:true,
-	}
+	},
+	scheduleTime:{
+		type:String,
+		required:true,
+	},
+	runAutoTask:{
+		type:Boolean,
+		default:true,
+	},
 },{
 	timestamps:true,
 })
